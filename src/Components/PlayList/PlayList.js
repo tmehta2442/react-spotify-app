@@ -1,11 +1,10 @@
 import React from 'react';
 import './PlayList.css';
-import App from '../App/App'
-import TrackList from '../TrackList/TrackList'
+import TrackList from '../TrackList/TrackList';
 
 class PlayList extends React.Component {
   render() {
-    console.log(this.props.playlistTrack)
+    //console.log(this.props.playlistTrack)
     return (
       <div className="Playlist">
         <input value="New Playlist"/>

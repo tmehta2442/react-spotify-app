@@ -29,31 +29,37 @@ class App extends React.Component {
       ],
       playlistName: ['The YoYo'],
       playlistTracks: [
-        { name: ['1playlist name'],
-          artist: ['1playlist artist'],
-          album: ['1playlist album']
+        { name: ['1playlist song name'],
+          artist: ['1 artist'],
+          album: ['1 album']
         },
-        { name: ['2playlist name'],
-          artist: ['2playlist artist'],
-          album: ['2playlist album']
+        { name: ['2playlist song name'],
+          artist: ['2 artist'],
+          album: ['2 album']
         },
-        { name: ['3playlist name'],
-          artist: ['3playlist artist'],
-          album: ['3playlist album']
+        { name: ['3playlist song name'],
+          artist: ['3 artist'],
+          album: ['3 album']
         }
       ]
     };
-    //console.log(this.state.searchResults);
+    this.addTrack = this.addTrack.bind(this);
+  }
+  addTrack(track) {
+    console.log(track.id);
+    // if(this.track[0].id !== this.state.playlistTracks) {
+    //   this.playlistTracks.push(this.track);
+    // }
   }
   render() {
-    //console.log(this.state.playlistTrack);
+    //console.log(this.state.track);
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar/>
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults}/>
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <PlayList playlistName={this.state.playlistName} playlistTrack={this.state.playlistTracks}/>
           </div>
         </div>

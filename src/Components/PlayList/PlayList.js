@@ -1,13 +1,16 @@
 import React from 'react';
 import './PlayList.css';
+import App from '../App/App'
+import TrackList from '../TrackList/TrackList'
 
 class PlayList extends React.Component {
   render() {
+    console.log(this.props.playlistTrack)
     return (
-      <div class="Playlist">
+      <div className="Playlist">
         <input value="New Playlist"/>
-        Add a TrackList component here
-        <a class="Playlist-save">SAVE TO SPOTIFY</a>
+        <TrackList tracks={this.props.playlistTrack}/>
+        <a className="Playlist-save">SAVE TO SPOTIFY</a>
       </div>
     );
   }

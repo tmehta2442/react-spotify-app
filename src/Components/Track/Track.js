@@ -3,13 +3,14 @@ import './Track.css';
 
 class Track extends React.Component {
   render() {
+    //console.log(this.props.track.name);
     return (
-      <div class="Track">
-        <div class="Track-information">
-          <h3>track name will go here</h3>
-          <p>track artist will go here | track album will go here</p>
+      <div className="Track">
+        <div className="Track-information">
+          <h3>{this.props.track.name}</h3>
+          <p>{this.props.track.artist} | {this.props.track.album}</p>
         </div>
-        <a class="Track-action">+ or - will go here</a>
+        <a className="Track-action">+ or - will go here</a>
       </div>
     );
   }

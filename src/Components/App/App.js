@@ -46,10 +46,11 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
   }
   addTrack(track) {
-    console.log(track.id);
-    // if(this.track[0].id !== this.state.playlistTracks) {
-    //   this.playlistTracks.push(this.track);
-    // }
+    // console.log(track.id);
+    console.log(this.state.playlistTracks);
+    if(track !== this.state.playlistTracks) {
+      this.state.playlistTracks.push(track);
+    }
   }
   render() {
     //console.log(this.state.track);

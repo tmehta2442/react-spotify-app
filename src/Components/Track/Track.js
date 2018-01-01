@@ -8,7 +8,6 @@ class Track extends React.Component {
   }
   addTrack(e) {
     return this.props.onAdd(this.props.track);
-    e.preventDefault();
   }
   render() {
     console.log(this.props.track);

@@ -47,35 +47,50 @@ class App extends React.Component {
           artist: '3 artist',
           album: '3 album',
           id: 7
+        },
+        { name: 'Song Name',
+          artist: 'Artist',
+          album: 'Album Name',
+          id: 4
         }
       ]
     };
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
   addTrack(track) {
-    // console.log(track.id);
-    // console.log(this.state.playlistTracks[0].id);
-    // console.log(this.state.playlistTracks.length);
+    let idExists = false;
     for (let num = 0; num < this.state.playlistTracks.length; num++) {
-
-
       if(track.id === this.state.playlistTracks[num].id) {
-        // console.log(track);
-        //this.state.playlistTracks.push(track);
-        console.log('match');
-        console.log(track.id);
-        break;
-      } else {
-        console.log('no match');
+        idExists = true;
       }
     }
-    // if () {
-
-    // }
-    //console.log(this.state.playlistTracks);
+    if(!idExists) {
+      this.state.playlistTracks.push(track);
+    }
+    console.log(this.state.playlistTracks);
   }
+  removeTrack(track) {
+    console.log(track.id);
+    console.log('-------');
+    //console.log(this.state.playlistTracks.id);
+    //this.state.playlistTracks.filter(del => del.id === track.id);
+    //this.state.playlistTracks.filter(test => test.id !== track.id);
+    let idExists = false;
+    let objNum;
+    for (let num = 0; num < this.state.playlistTracks.length; num++) {
+      if(track.id === this.state.playlistTracks[num].id) {
+        idExists = true;
+        objNum = num;
+      }
+    }
+    if(idExists) {
+      this.state.playlistTracks.splice(objNum, 1);
+    }
+    console.log(this.state.playlistTracks);
+  }
+
   render() {
-    //console.log(this.state.track);
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
@@ -83,7 +98,7 @@ class App extends React.Component {
           <SearchBar/>
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
-            <PlayList playlistName={this.state.playlistName} playlistTrack={this.state.playlistTracks}/>
+            <PlayList playlistName={this.state.playlistName} playlistTrack={this.state.playlistTracks} onRemove={this.removeTrack}/>
           </div>
         </div>
       </div>

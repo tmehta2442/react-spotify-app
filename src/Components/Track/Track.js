@@ -10,7 +10,7 @@ class Track extends React.Component {
     return this.props.onAdd(this.props.track);
   }
   render() {
-    console.log(this.props.track);
+    //console.log(this.props.track);
     return (
       <div className="Track">
         <div className="Track-information">

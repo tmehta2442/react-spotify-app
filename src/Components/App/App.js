@@ -10,36 +10,43 @@ class App extends React.Component {
     //hardcoded stuff
     this.state = {
       searchResults: [
-        { name: ['The I hates Abid Blues'],
-          artist: ['Camille'],
-          album: ['Ode to Tejas']
+        { name: 'The I hates Abid Blues',
+          artist: 'Camille',
+          album: 'Ode to Tejas',
+          id: 1
         },
-        { name: ['Abid go away'],
-          artist: ['The Whole World'],
-          album: ['tejas is the best']
+        { name: 'Abid go away',
+          artist: 'The Whole World',
+          album: 'tejas is the best',
+          id: 2
         },
-        { name: ['Saqi'],
-          artist: ['The Crazy Ones'],
-          album: ['From Calcutta with Joy']
+        { name: 'Saqi',
+          artist: 'The Crazy Ones',
+          album: 'From Calcutta with Joy',
+          id: 3
         },
-        { name: ['Song Name'],
-          artist: ['Artist'],
-          album: ['Album Name']
+        { name: 'Song Name',
+          artist: 'Artist',
+          album: 'Album Name',
+          id: 4
         }
       ],
-      playlistName: ['The YoYo'],
+      playlistName: 'The YoYo',
       playlistTracks: [
-        { name: ['1playlist song name'],
-          artist: ['1 artist'],
-          album: ['1 album']
+        { name: '1playlist song name',
+          artist: '1 artist',
+          album: '1 album',
+          id: 5
         },
-        { name: ['2playlist song name'],
-          artist: ['2 artist'],
-          album: ['2 album']
+        { name: '2playlist song name',
+          artist: '2 artist',
+          album: '2 album',
+          id: 6
         },
-        { name: ['3playlist song name'],
-          artist: ['3 artist'],
-          album: ['3 album']
+        { name: '3playlist song name',
+          artist: '3 artist',
+          album: '3 album',
+          id: 7
         }
       ]
     };
@@ -47,10 +54,25 @@ class App extends React.Component {
   }
   addTrack(track) {
     // console.log(track.id);
-    console.log(this.state.playlistTracks);
-    if(track !== this.state.playlistTracks) {
-      this.state.playlistTracks.push(track);
+    // console.log(this.state.playlistTracks[0].id);
+    // console.log(this.state.playlistTracks.length);
+    for (let num = 0; num < this.state.playlistTracks.length; num++) {
+
+
+      if(track.id === this.state.playlistTracks[num].id) {
+        // console.log(track);
+        //this.state.playlistTracks.push(track);
+        console.log('match');
+        console.log(track.id);
+        break;
+      } else {
+        console.log('no match');
+      }
     }
+    // if () {
+
+    // }
+    //console.log(this.state.playlistTracks);
   }
   render() {
     //console.log(this.state.track);

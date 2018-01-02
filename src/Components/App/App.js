@@ -58,6 +58,8 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlayList = this.savePlayList.bind(this);
+    this.search = this.search.bind(this);
   }
   addTrack(track) {
     let idExists = false;
@@ -96,26 +98,28 @@ class App extends React.Component {
     //let updatedName = this.state.playlistName;
     // this.setState(updatedName = name);
     //this.state.playlistName = name;
-    this.setState({playlistName: name}, () => {console.log(this.state.playlistName)});
-    
-    
+    this.setState({playlistName: name}, () => {console.log(this.state.playlistName)});    
   }
-  viewPlaylistNames() {
-    console.log(this.state.playlistName);
+  savePlayList(uri) {
+    let trackURIs = [this.state.playlistTracks.uri]
+  }
+  search(query) {
+    console.log(query);
   }
   render() {
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar/>
+          <SearchBar onSearch={this.search} />
           <div className="App-playlist">
             <SearchResults  searchResults={this.state.searchResults}
                             onAdd={this.addTrack} />
             <PlayList playlistName={this.state.playlistName}
                       playlistTrack={this.state.playlistTracks}
                       onRemove={this.removeTrack}
-                      onNameChange={this.updatePlaylistName} />
+                      onNameChange={this.updatePlaylistName}
+                      onSave={this.savePlayList} />
           </div>
         </div>
       </div>

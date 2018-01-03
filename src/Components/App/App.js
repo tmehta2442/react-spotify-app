@@ -3,6 +3,7 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import PlayList from '../PlayList/PlayList';
+import Spotify from '../../util/Spotify';
 
 class App extends React.Component {
   constructor(props) {
@@ -104,7 +105,9 @@ class App extends React.Component {
     let trackURIs = [this.state.playlistTracks.uri]
   }
   search(query) {
-    console.log(query);
+    Spotify.search(query).then(searchResults => {
+      this.setState({searchResults: searchResults});
+    });
   }
   render() {
     return (

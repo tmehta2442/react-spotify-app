@@ -8,38 +8,17 @@ import Spotify from '../../util/Spotify';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    //hardcoded stuff
     this.state = {
       searchResults: [],
-      playlistName: 'The YoYo',
-      playlistTracks: [
-        { name: '1playlist song name',
-          artists: '1 artist',
-          album: '1 album',
-          id: 5
-        },
-        { name: '2playlist song name',
-          artists: '2 artist',
-          album: '2 album',
-          id: 6
-        },
-        { name: '3playlist song name',
-          artists: '3 artist',
-          album: '3 album',
-          id: 7
-        },
-        { name: '4PlaylistSong Name',
-          artists: '4Artist',
-          album: '4Album Name',
-          id: 8
-        }
-      ]
+      playlistName: 'New Playlist',
+      playlistTracks: []
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlayList = this.savePlayList.bind(this);
     this.search = this.search.bind(this);
+    this.savePlayList = this.savePlayList.bind(this);
   }
   addTrack(track) {
     let idExists = false;
@@ -52,14 +31,8 @@ class App extends React.Component {
       this.state.playlistTracks.push(track);
     }
     this.setState(this.state.playlistTracks);
-    //console.log(this.state.playlistTracks);
   }
   removeTrack(track) {
-    console.log(track.id);
-    console.log('-------');
-    //console.log(this.state.playlistTracks.id);
-    //this.state.playlistTracks.filter(del => del.id === track.id);
-    //this.state.playlistTracks.filter(test => test.id !== track.id);
     let idExists = false;
     let objNum;
     for (let num = 0; num < this.state.playlistTracks.length; num++) {
@@ -72,16 +45,18 @@ class App extends React.Component {
       this.state.playlistTracks.splice(objNum, 1);
     }
     this.setState((this.state.playlistTracks));
-    console.log(this.state);
   }
   updatePlaylistName(name) {
-    //let updatedName = this.state.playlistName;
-    // this.setState(updatedName = name);
-    //this.state.playlistName = name;
-    this.setState({playlistName: name}, () => {console.log(this.state.playlistName)});    
+    this.setState({playlistName: name});    
   }
-  savePlayList(uri) {
-    let trackURIs = [this.state.playlistTracks.uri]
+  savePlayList() {
+    const trackUris = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackUris).then(() => {
+      this.setState({
+        playlistName:'New Playlist',
+        playlistTracks: []
+      })
+    })
   }
   search(query) {
     Spotify.search(query).then(searchResults => {

@@ -10,47 +10,26 @@ class App extends React.Component {
     super(props);
     //hardcoded stuff
     this.state = {
-      searchResults: [
-        { name: 'The I hates Abid Blues',
-          artist: 'Camille',
-          album: 'Ode to Tejas',
-          id: 1
-        },
-        { name: 'Abid go away',
-          artist: 'The Whole World',
-          album: 'tejas is the best',
-          id: 2
-        },
-        { name: 'Saqi',
-          artist: 'The Crazy Ones',
-          album: 'From Calcutta with Joy',
-          id: 3
-        },
-        { name: 'Song Name',
-          artist: 'Artist',
-          album: 'Album Name',
-          id: 4
-        }
-      ],
+      searchResults: [],
       playlistName: 'The YoYo',
       playlistTracks: [
         { name: '1playlist song name',
-          artist: '1 artist',
+          artists: '1 artist',
           album: '1 album',
           id: 5
         },
         { name: '2playlist song name',
-          artist: '2 artist',
+          artists: '2 artist',
           album: '2 album',
           id: 6
         },
         { name: '3playlist song name',
-          artist: '3 artist',
+          artists: '3 artist',
           album: '3 album',
           id: 7
         },
         { name: '4PlaylistSong Name',
-          artist: '4Artist',
+          artists: '4Artist',
           album: '4Album Name',
           id: 8
         }

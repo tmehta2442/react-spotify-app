@@ -15,8 +15,8 @@ const Spotify = {
     const accessToken = window.location.href.match(/access_token=([^&]*)/);
     const expirationTime = window.location.href.match(/expires_in=([^&]*)/);
     if(accessToken && expirationTime) {
-      setAccessToken = accessToken;
-      const expiration = expirationTime;
+      setAccessToken = accessToken[1];
+      const expiration = Number(expirationTime[1]);
       window.setTimeout(() => setAccessToken = '', expiration * 1000);
       window.history.pushState('Access Token', null, '/');
       return setAccessToken;
@@ -31,24 +31,29 @@ const Spotify = {
   },
   search(searchTerm) {
     const accessToken = Spotify.getAccessToken();
+    console.log('accessToken=');
+    console.log(accessToken);
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
+        Authorization: `Bearer ${accessToken}`
       }
     }).then(response => {
+      // console.log('response.json=')
+      // console.log(response.json());
       return response.json();
     }).then(jsonResponse => {
       if(!jsonResponse) {
         return [];
       }
+      console.log('jsonResponse=')
       console.log(jsonResponse);
-      // return jsonResponse.track.map(track => ({
-      //   id: track.id,
-      //   name: track.name,
-      //   artist: track.artist[0].name,
-      //   album: track.album.name,
-      //   uri: track.uri
-      // }));
+      return jsonResponse.tracks.items.map(track => ({
+        id: track.id,
+        name: track.name,
+        artists: track.artists[0].name,
+        album: track.album.name,
+        uri: track.uri
+      }));
     });
   },
   savePlaylist(playlistName, trackUris) {

@@ -21,8 +21,8 @@ const Spotify = {
       window.history.pushState('Access Token', null, '/');
       return setAccessToken;
     } else {
-      // const redirectUser = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
-      // window.location = redirectUser;
+      const redirectUser = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+      window.location = redirectUser;
     }
   },
   search(searchTerm) {
@@ -37,7 +37,7 @@ const Spotify = {
       if(!jsonResponse) {
         return [];
       }
-      console.log(jsonResponse.track);
+      console.log(jsonResponse);
       // return jsonResponse.track.map(track => ({
       //   id: track.id,
       //   name: track.name,

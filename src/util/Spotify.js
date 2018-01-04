@@ -1,5 +1,6 @@
 const clientId = '38c69baa872042fea4adacce68c86956';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'http://tejas-react-spotify.surge.sh/';
+//const redirectUri = 'http://tejas-react-spotify.surge.sh/'; (make sure to update spotify for local ;) )
 let setAccessToken;
 
 const Spotify = {
@@ -17,7 +18,6 @@ const Spotify = {
       return setAccessToken;
     } else {
       const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
-
       window.location = accessUrl;
     }
   },

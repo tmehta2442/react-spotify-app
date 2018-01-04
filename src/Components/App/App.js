@@ -18,19 +18,25 @@ class App extends React.Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlayList = this.savePlayList.bind(this);
     this.search = this.search.bind(this);
-    this.savePlayList = this.savePlayList.bind(this);
   }
   addTrack(track) {
     let idExists = false;
     for (let num = 0; num < this.state.playlistTracks.length; num++) {
       if(track.id === this.state.playlistTracks[num].id) {
-        let idExists = true;
+        idExists = true;
       }
     }
-    if(!idExists) {
-      this.state.playlistTracks.push(track);
+    if (!idExists) {
+      this.setState(prevState => {
+        const newPlaylistTracks = [
+          ...prevState.playlistTracks,
+          track
+        ];
+        return {
+          playlistTracks: newPlaylistTracks
+        }
+      });
     }
-    this.setState(this.state.playlistTracks);
   }
   removeTrack(track) {
     let idExists = false;
@@ -42,9 +48,10 @@ class App extends React.Component {
       }
     }
     if(idExists) {
-      this.state.playlistTracks.splice(objNum, 1);
+      var array = this.state.playlistTracks;
+      array.splice(objNum, 1);
+      this.setState({ playlistTracks: array });
     }
-    this.setState((this.state.playlistTracks));
   }
   updatePlaylistName(name) {
     this.setState({playlistName: name});    

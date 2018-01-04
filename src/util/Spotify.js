@@ -22,10 +22,10 @@ const Spotify = {
     }
   },
   search(searchTerm) {
-    const accessToken = Spotify.getAccessToken();
+    const setAccessToken = Spotify.getAccessToken();
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${setAccessToken}`
       }
     }).then(response => {
       return response.json();
@@ -46,21 +46,19 @@ const Spotify = {
     if(!playlistName || !trackUris) {
       return;
     }
-    const accessToken = Spotify.getAccessToken();
-    const headers = { Authorization: `Bearer ${accessToken}`};
+    const setAccessToken = Spotify.getAccessToken();
+    const headers = { Authorization: `Bearer ${setAccessToken}`};
     let userId;
     return fetch(`https://api.spotify.com/v1/me`, { headers: headers
-    }).then(response => {
-      return response.json();
-    }).then(jsonResponse => {
+    }).then(response => response.json() 
+    ).then(jsonResponse => {
       userId = jsonResponse.id;
       return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
         headers: headers,
         method: 'POST',
         body: JSON.stringify({ name: playlistName})
-      }).then(response => {
-        return response.json();
-      }).then(jsonResponse => {
+      }).then(response => response.json() 
+      ).then(jsonResponse => {
         const playlistId = jsonResponse.id;
         return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
           headers: headers,

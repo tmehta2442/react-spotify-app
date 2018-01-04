@@ -11,10 +11,11 @@ class SearchBar extends React.Component {
     this.handleTermChange = this.handleTermChange.bind(this);
   }
   search(e) {
+    //e.preventDefault();
     this.props.onSearch(this.state.searchWord);
-    e.preventDefault();
   }
   handleTermChange(e) {
+    //e.preventDefault();
     this.setState({searchWord: e.target.value});
   }
   render() {

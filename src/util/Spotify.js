@@ -1,6 +1,3 @@
-import {safeKey} from '../hidden/keys';
-
-
 const clientId = '38c69baa872042fea4adacce68c86956';
 const redirectUri = 'http://localhost:3000/';
 let setAccessToken;
@@ -56,7 +53,7 @@ const Spotify = {
     }).then(response => {
       return response.json();
     }).then(jsonResponse => {
-      const userId = jsonResponse.id;
+      userId = jsonResponse.id;
       return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
         headers: headers,
         method: 'POST',

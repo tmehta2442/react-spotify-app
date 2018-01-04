@@ -24,7 +24,7 @@ class App extends React.Component {
     let idExists = false;
     for (let num = 0; num < this.state.playlistTracks.length; num++) {
       if(track.id === this.state.playlistTracks[num].id) {
-        idExists = true;
+        let idExists = true;
       }
     }
     if(!idExists) {

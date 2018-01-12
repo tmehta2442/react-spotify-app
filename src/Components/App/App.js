@@ -27,19 +27,9 @@ class App extends React.Component {
     }
   }  
   removeTrack(track) {
-    let idExists = false;
-    let objNum;
-    for (let num = 0; num < this.state.playlistTracks.length; num++) {
-      if(track.id === this.state.playlistTracks[num].id) {
-        idExists = true;
-        objNum = num;
-      }
-    }
-    if(idExists) {
-      var array = this.state.playlistTracks;
-      array.splice(objNum, 1);
-      this.setState({ playlistTracks: array });
-    }
+    let tracks = this.state.playlistTracks;
+    tracks = tracks.filter(currentTrack => currentTrack.id !== track.id);
+    this.setState({playlistTracks: tracks});
   }
   updatePlaylistName(name) {
     this.setState({playlistName: name});    

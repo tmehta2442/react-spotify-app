@@ -20,24 +20,12 @@ class App extends React.Component {
     this.search = this.search.bind(this);
   }
   addTrack(track) {
-    let idExists = false;
-    for (let num = 0; num < this.state.playlistTracks.length; num++) {
-      if(track.id === this.state.playlistTracks[num].id) {
-        idExists = true;
-      }
+    let tracks = this.state.playlistTracks;
+    if (!tracks.includes(track)) {
+      tracks.push(track);
+      this.setState({playlistTracks: tracks});
     }
-    if (!idExists) {
-      this.setState(prevState => {
-        const newPlaylistTracks = [
-          ...prevState.playlistTracks,
-          track
-        ];
-        return {
-          playlistTracks: newPlaylistTracks
-        }
-      });
-    }
-  }
+  }  
   removeTrack(track) {
     let idExists = false;
     let objNum;
